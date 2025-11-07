@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Rita</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #d49b4f, #a0522d); /* ungu ke coklat */
+        }
+
+        header {
+            background-color: #d2b48c;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #333;
+            flex: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #e0e0c0;
+        }
+
+        .content {
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .content h1 {
+            color: #f5f5dc;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .intro img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .intro-text h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Menengahkan teks di halaman tertentu */
+        #pendidikan, #skills, #certificate, #contact {
+            text-align: center;
+        }
+
+        #pendidikan ul, 
+        #skills ul, 
+        #contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #pendidikan li, 
+        #skills li, 
+        #contact li {
+            margin: 8px 0;
+        }
+
+        /* Tambahan gaya untuk subjudul di Skills */
+        .skill-category {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .skill-desc {
+            max-width: 700px;
+            margin: 10px auto 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Gaya untuk galeri sertifikat */
+        .certificate-gallery {
+            margin-top: 20px;
+        }
+
+        .certificate-gallery h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .certificate-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .certificate-caption {
+            padding: 10px;
+            background-color: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+            font-style: italic;
+            padding: 10px;
+            background-color: #ffeeee;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        /* Kotak content untuk halaman kecuali certificate */
+        .page:not(#certificate) {
+            background-color: #fff8f0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto; /* posisi tengah */
+        }
+
+        /* Tetap jaga tampilan certificate seperti sebelumnya */
+        #certificate {
+            background: none;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Warna teks di dalam content */
+        .content .page p, 
+        .content .page ul, 
+        .content .page h1, 
+        .content .page h2, 
+        .content .page h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')"><strong>About Me</strong></a></li>
+                <li><a href="#" onclick="showPage('pendidikan')"><strong>Pendidikan</strong></a></li>
+                <li><a href="#" onclick="showPage('skills')"><strong>Skills</strong></a></li>
+                <li><a href="#" onclick="showPage('certificate')"><strong>Certificate</strong></a></li>
+                <li><a href="#" onclick="showPage('contact')"><strong>Contact</strong></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <div id="home" class="page active">
+            <div class="intro">
+                <img src="foto.img/close up.jpg" alt="Foto Wahyu Nurita">
+                <div class="intro-text">
+                    <div class="skill-category">Perkenalan</div>
+                    <p class="skill-desc">
+                        Halo, perkenalkan nama saya Wahyu Nurita. Saya berusia 17 tahun dan saat ini duduk di kelas XI SMK Negeri 1 Nglegok, mengambil jurusan Teknik Komputer dan Jaringan (TKJ). 
+                        Saya memiliki rasa penasaran yang tinggi terhadap dunia teknologi, khususnya dalam bidang jaringan, pemrograman, dan pengelolaan sistem. 
+                        Rasa ingin tahu tersebut mendorong saya untuk terus belajar dan mengembangkan kemampuan di bidang teknologi informasi.
+                    </p>
+                    <div class="skill-category">Aktivitas & Ekstrakurikuler</div>
+                    <p class="skill-desc">
+                        Selain belajar di kelas, saya juga aktif dalam berbagai kegiatan ekstrakurikuler. 
+                        Saya bergabung dengan KITS (Komunitas IT SMK Negeri 1 Nglegok) untuk memperdalam pengetahuan di dunia IT melalui praktik langsung, kolaborasi, dan berbagai proyek teknologi. 
+                        Di sisi lain, saya juga mengikuti ekstrakurikuler Pramuka, karena saya menyukai kegiatan yang menantang, mengajarkan kemandirian, serta melatih kepemimpinan dan kerja sama tim.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pendidikan" class="page">
+            <p>Berikut merupakan perjalanan pendidikan saya yang telah membentuk dasar pengetahuan dan keterampilan saya hingga saat ini:</p>
+            <ul>
+                <li><strong>SD:</strong> UPT SD Negeri Ngoran 02 - Tahun 2021</li>
+                <li><strong>SMP:</strong> UPT SMP Negeri 1 Nglegok - Tahun 2024</li>
+                <li><strong>SMK:</strong> SMK Negeri 1 Nglegok, Jurusan Teknik Komputer dan Jaringan (TKJ) - Kelas XI (Saat Ini)</li>
+            </ul>
+        </div>
+
+        <div id="skills" class="page">
+            <div class="skill-category">Networking</div>
+            <p class="skill-desc">
+                Saya telah mempelajari dan memahami dasar-dasar jaringan komputer, termasuk cara mengelola serta mengonfigurasi jaringan. 
+                Saya juga memiliki pengalaman dalam melakukan konfigurasi pada perangkat jaringan, khususnya <strong>MikroTik</strong>.
+            </p>
+
+            <div class="skill-category">Sysadmin</div>
+            <p class="skill-desc">
+                Saya memiliki pengalaman sebagai <strong>system administrator</strong> menggunakan sistem operasi <strong>Debian</strong>. 
+                Saya pernah melakukan pengaturan domain serta membuat tampilan awal untuk sebuah website sederhana.
+            </p>
+        </div>
+
+        <div id="certificate" class="page">
+            <div class="certificate-gallery">
+                <h2>Berikut adalah sertifikat yang telah saya peroleh:</h2>
+                <div class="error-message" id="img-error">
+                </div>
+                <div class="gallery-container">
+                    <div class="certificate-item">
+                        <img src="foto.img/Network Fundamental _page-0001.jpg" alt="Sertifikat Network Fundamental" onerror="this.src='/foto.image/Network Fundamental'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">Network Fundamental - Aguna Course</div>
+                    </div>
+                    <div class="certificate-item">
+                        <img src="foto.img/Linux Fundamental _page-0001.jpg" alt="Sertifikat Linux Fundamental" onerror="this.src='https://picsum.photos/seed/linux/400/300.jpg'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">Linux Fundamental - Aguna Course</div>
+                    </div>
+                    <div class="certificate-item">
+                        <img src="foto.img/Virtual Machine Fundamental _page-0001.jpg" alt="Sertifikat Virtual Machine Fundamental" onerror="this.src='https://picsum.photos/seed/vm/400/300.jpg'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">Virtual Machine Fundamental - Aguna Course</div>
+                    </div>
+                    <div class="certificate-item">
+                        <img src="foto.img/Python Fundamental _page-0001.jpg" alt="Sertifikat Python Fundamental" onerror="this.src='https://picsum.photos/seed/python/400/300.jpg'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">Python Fundamental - Aguna Course</div>
+                    </div>
+                    <div class="certificate-item">
+                        <img src="foto.img/Simulasi%20Jaringan%20dengan%20PNETLab_page-0001.jpg" alt="Sertifikat Simulasi Jaringan dengan PNETLab" onerror="this.src='https://picsum.photos/seed/pnetlab/400/300.jpg'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">Simulasi Jaringan dengan PNETLab - Aguna Course</div>
+                    </div>
+                    <div class="certificate-item">
+                        <img src="foto.img/IDN.ID.jpg" alt="Sertifikat IDN Academy Goes to School Network" onerror="this.src='https://picsum.photos/seed/idn/400/300.jpg'; document.getElementById('img-error').style.display='block';">
+                        <div class="certificate-caption">IDN Academy Goes to School Network - ID-Networkers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="page">
+           <p><strong>Hubungi saya melalui:</strong></p>
+            <ul>
+                <li><strong>Email:</strong> wnurita510@gmail.com</strong></li>
+                <li><strong>Telepon:</strong> +62 123456789</li>
+
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Sembunyikan pesan error saat berpindah halaman
+            document.getElementById('img-error').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
